@@ -10,9 +10,9 @@ const CartItem = ({id, item}) => {
     }
 
     const changeQuantity = (newQuantity)=>{
-        console.log(newQuantity)
+        // console.log(newQuantity)
         db.collection('CartItems').doc(id).update({
-            quantity:newQuantity
+            quantity:parseInt(newQuantity)
         })
     }
 
