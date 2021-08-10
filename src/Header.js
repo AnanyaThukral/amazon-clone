@@ -6,7 +6,7 @@ import {
 } from "react-router-dom"
 import CartItem from './CartItem';
 
-const Header = ({cartItems}) => {
+const Header = ({user, cartItems}) => {
 
     const getCount = ()=>{
         let count = 0
@@ -28,7 +28,7 @@ const Header = ({cartItems}) => {
             <HeaderOptionAddress>
                 <FaMapMarker/>
                 <HeaderOption>
-                    <OptionLineOne>Deliver to Ananya</OptionLineOne>
+                    <OptionLineOne>Deliver to {user.name}</OptionLineOne>
                     <OptionLineTwo>Guelph N1L 0M5</OptionLineTwo>
                 </HeaderOption>
             </HeaderOptionAddress>
@@ -40,7 +40,7 @@ const Header = ({cartItems}) => {
             </HeaderSearch>
             <HeaderNavItems>
                 <HeaderOption>
-                    <OptionLineOne>Hello, Ananya</OptionLineOne>
+                    <OptionLineOne>Hello, {user.name}</OptionLineOne>
                     <OptionLineTwo>Accounts & Lists</OptionLineTwo>
                 </HeaderOption>
                 <HeaderOption>
