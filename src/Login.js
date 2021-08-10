@@ -2,20 +2,25 @@ import React from 'react'
 import styled from 'styled-components'
 import {auth, provider} from './firebase'
 
-const login = () => {
+const login = ({setUser}) => {
 
     const signIn = ()=>{
         auth.signInWithPopup(provider)
         .then((result)=>{
             //the signed in user info
             let user = result.user;
-            console.log(user)
+            let newUser = {
+                name: user.displayName,
+                email: user.email,
+                photo:user.photoURL
+            }
+            //save it in local storage
+            localStorage.setItem('user', JSON.stringify(newUser))
+            setUser(newUser)
         }).catch((error)=>{
             alert(error.message)
         })
     }
-
-
 
     return (
         <Container>
