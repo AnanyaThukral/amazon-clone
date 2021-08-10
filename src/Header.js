@@ -4,8 +4,20 @@ import { FaSearch,  FaShoppingCart, FaMapMarker} from "react-icons/fa";
 import {
     Link
 } from "react-router-dom"
+import CartItem from './CartItem';
 
-const Header = () => {
+const Header = ({cartItems}) => {
+
+    const getCount = ()=>{
+        let count = 0
+        //loop through all the cart items
+        cartItems.forEach(cartItem=>{
+            //add the quantity of the cart item to total
+            count+=cartItem.product.quantity;
+        })
+        return count
+    }
+
     return (
         <Container>
             <Link to = "/">
@@ -38,7 +50,7 @@ const Header = () => {
                 <Link to = "/Cart">
                 <HeaderOptionCart>
                     <FaShoppingCart/>
-                    <CardCount>5</CardCount>
+                    <CardCount>{getCount()}</CardCount>
                 </HeaderOptionCart>
                 </Link>
             </HeaderNavItems>

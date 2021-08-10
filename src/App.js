@@ -35,7 +35,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header/>
+        <Header cartItems = {cartItems}/>
         <Subheader/>
         <Switch>
           <Route path = "/cart">
