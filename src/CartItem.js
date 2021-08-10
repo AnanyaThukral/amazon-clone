@@ -4,6 +4,10 @@ import db from './firebase'
 
 const CartItem = ({id, item}) => {
 
+    const deleteItem = ()=>{
+        db.collection('CartItems').doc(id).delete()
+    }
+
     let options = []
     for(let i = 1; i < Math.max(item.quantity+1, 20); i++){
         options.push(<option value={i}>Qty: {i}</option>)
@@ -32,7 +36,10 @@ const CartItem = ({id, item}) => {
                             {options}
                         </select>
                     </CardItemQuantityContainer>
-                    <CardItemDeleteContainer>Delete</CardItemDeleteContainer>
+                    <CardItemDeleteContainer 
+                    onClick = {deleteItem}>
+                    Delete
+                    </CardItemDeleteContainer>
                 </CardItemBottom>
             </CardItemInfo>
             <CardItemPrice>
