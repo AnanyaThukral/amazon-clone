@@ -8,7 +8,7 @@ const CardTotal = ({cartItems}) => {
         let count = 0
 
         cartItems.forEach(item=>{
-            count+=item.product.quantity;
+            count+=(item.product.quantity);
         })
         return count
     }
