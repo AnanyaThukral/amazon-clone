@@ -14,8 +14,8 @@ const login = ({setUser}) => {
                 email: user.email,
                 photo:user.photoURL
             }
-            //save it in local storage
-            localStorage.setItem('user', JSON.stringify(newUser))
+            //save the user in the local storage as a string because it was an object
+            localStorage.setItem('user',JSON.stringify(newUser))
             setUser(newUser)
         }).catch((error)=>{
             alert(error.message)
