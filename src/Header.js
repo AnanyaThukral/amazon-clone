@@ -6,7 +6,7 @@ import {
 } from "react-router-dom"
 import CartItem from './CartItem';
 
-const Header = ({user, cartItems}) => {
+const Header = ({user, cartItems, signOut}) => {
 
     const getCount = ()=>{
         let count = 0
@@ -39,7 +39,7 @@ const Header = ({user, cartItems}) => {
                 </HeaderSearchIconContainer>
             </HeaderSearch>
             <HeaderNavItems>
-                <HeaderOption>
+                <HeaderOption onClick = {signOut}>
                     <OptionLineOne>Hello, {user.name}</OptionLineOne>
                     <OptionLineTwo>Accounts & Lists</OptionLineTwo>
                 </HeaderOption>
@@ -138,6 +138,7 @@ const HeaderNavItems = styled.div`
 `
 
 const HeaderOption = styled.div`
+    cursor: pointer;
 `
 
 const HeaderOptionCart = styled.div`
