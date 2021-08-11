@@ -4,15 +4,18 @@ import Header from './Header';
 import Subheader from './Subheader';
 import Cart from './Cart';
 import Home from './Home'
+import Login from './Login';
+import styled from 'styled-components'
 import 
     {BrowserRouter as Router, 
     Switch,
     Route, 
     Link
   } from "react-router-dom";
-import db from './firebase'
+import db, { auth } from './firebase'
 
 function App() {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [cartItems, setCartItems] = useState([])
 
   const getCartItems = ()=>{
@@ -26,18 +29,37 @@ function App() {
     })
   }
 
+    const signOut = ()=>{
+      auth.signOut()
+      .then(()=>{
+        localStorage.removeItem('user')
+        setUser(null)
+      })
+    
+    }
+
     useEffect(()=>{
       getCartItems()
     },[])
 
-    console.log(cartItems)
 
   return (
     <Router>
-      <div className="App">
-        <Header cartItems = {cartItems}/>
+      {
+        //if no user exists then Login else show everything else
+        !user ? (
+          <Login setUser = {setUser}/>
+        ): (
+
+      <Container>
+        <Header 
+        user = {user} 
+        cartItems = {cartItems}
+        signOut = {signOut}
+        />
         <Subheader/>
         <Switch>
+
           <Route path = "/cart">
             <Cart cartItems = {cartItems}/>
           </Route>
@@ -47,9 +69,13 @@ function App() {
           </Route>
         
         </Switch>
-      </div>
+      </Container>
+        )
+      }
     </Router>
   );
 }
 
 export default App;
+
+const Container = styled.div``
