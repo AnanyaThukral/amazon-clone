@@ -5,7 +5,7 @@ import db from './firebase'
 
 const Product = ({title, price, rating, image, id}) => {
 
-    //fun saves the date to db collection - ('CartItems')
+    //fun saves the data to db collection - ('CartItems')
     const addToCart = ()=>{
         console.log(id)
         const cartItem = db.collection("CartItems").doc(id) //create a new documents in "cartItem" collection with products "id"
